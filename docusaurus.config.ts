@@ -66,6 +66,7 @@ const config: Config = {
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
+          // routeBasePath: 'releases',   // URL が /releases になる
           onUntruncatedBlogPosts: 'warn',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
