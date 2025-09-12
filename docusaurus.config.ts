@@ -32,8 +32,8 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'ja',
+    locales: ['ja'],
   },
 
   presets: [
@@ -41,11 +41,15 @@ const config: Config = {
       'classic',
       {
         docs: {
+          // TSでもOK。sidebars.ts を使うならそのまま文字列で指定可
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // サイドバー“中身”のデフォルト挙動
+          sidebarCollapsed: true,
+          sidebarCollapsible: true,
         },
         blog: {
           showReadingTime: true,
@@ -69,9 +73,32 @@ const config: Config = {
     ],
   ],
 
+  // ★ オフライン検索（local search）を追加
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        indexDocs: true,
+        indexBlog: true,
+        indexPages: true,
+        docsRouteBasePath: '/docs',
+        blogRouteBasePath: '/blog',
+        language: ['ja', 'en'],
+        // excludeRoutes: ['/tags/**'],
+      },
+    ],
+  ],
+
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    // ★ サイドバー“全体”の開閉トグル（デスクトップ）
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: true,
+      },
+    },
     navbar: {
       title: 'My Site',
       logo: {
