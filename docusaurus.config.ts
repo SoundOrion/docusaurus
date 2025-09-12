@@ -50,6 +50,8 @@ const config: Config = {
           // サイドバー“中身”のデフォルト挙動
           sidebarCollapsed: true,
           sidebarCollapsible: true,
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         blog: {
           showReadingTime: true,
@@ -65,6 +67,8 @@ const config: Config = {
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: './src/css/custom.css',
