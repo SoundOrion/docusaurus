@@ -45,3 +45,31 @@ The `cd` command changes the directory you're working with. In order to work wit
 The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
 
 Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+
+
+```mermaid
+flowchart LR
+  A[Start] --> B{条件}
+  B -->|はい| C[処理]
+  B -->|いいえ| D[中止]
+```
+
+:::tip ヒント
+ここにコツを書く
+:::
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="Windows">…</TabItem>
+  <TabItem value="Linux">…</TabItem>
+</Tabs>
+
+
+```bash title="デプロイ手順" {1,3}
+npm ci
+npm run build
+- onBrokenLinks: 'throw'
++ onBrokenLinks: 'log'
+```

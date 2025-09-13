@@ -77,7 +77,8 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
+  themes: ['@docusaurus/theme-mermaid'],
+  markdown: { mermaid: true },
   // ★ オフライン検索（local search）を追加
   plugins: [
     [
@@ -93,6 +94,7 @@ const config: Config = {
         // excludeRoutes: ['/tags/**'],
       },
     ],
+     ['docusaurus-plugin-image-zoom', { selector: '.markdown img' }],
   ],
 
   themeConfig: {
