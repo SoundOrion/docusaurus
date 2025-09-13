@@ -2,7 +2,13 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+// GitHub リポジトリ情報を変数化
+const ORG_NAME = 'SoundOrion';
+const PROJECT_NAME = 'docusaurus';
+const REPO_URL = `https://github.com/${ORG_NAME}/${PROJECT_NAME}`;
+
+// editUrl を組み立てるヘルパー
+const buildEditUrl = (path: string) => `${REPO_URL}/tree/main/${path}`;
 
 const config: Config = {
   title: 'My Site',
@@ -20,17 +26,12 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'SoundOrion', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: ORG_NAME,
+  projectName: PROJECT_NAME,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'ja',
     locales: ['ja'],
@@ -41,13 +42,8 @@ const config: Config = {
       'classic',
       {
         docs: {
-          // TSでもOK。sidebars.ts を使うならそのまま文字列で指定可
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/SoundOrion/docusaurus/tree/main/',
-          // サイドバー“中身”のデフォルト挙動
+          editUrl: buildEditUrl(''), // docs 以下は Docusaurus が追記してくれる
           sidebarCollapsed: true,
           sidebarCollapsible: true,
           showLastUpdateAuthor: true,
@@ -59,11 +55,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/SoundOrion/docusaurus/tree/main/',
-          // Useful options to enforce blogging best practices
+          editUrl: buildEditUrl(''),
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           // routeBasePath: 'releases',   // URL が /releases になる
@@ -77,9 +69,10 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+
   themes: ['@docusaurus/theme-mermaid'],
   markdown: { mermaid: true },
-  // ★ オフライン検索（local search）を追加
+
   plugins: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
@@ -91,21 +84,29 @@ const config: Config = {
         docsRouteBasePath: '/docs',
         blogRouteBasePath: '/blog',
         language: ['ja', 'en'],
-        // excludeRoutes: ['/tags/**'],
       },
     ],
-     ['docusaurus-plugin-image-zoom', { selector: '.markdown img' }],
+    ['docusaurus-plugin-image-zoom', { selector: '.markdown img' }],
   ],
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
-    // ★ サイドバー“全体”の開閉トグル（デスクトップ）
+
     docs: {
       sidebar: {
         hideable: true,
         autoCollapseCategories: true,
       },
     },
+
+    // 最終更新を JST で表示
+    lastUpdated: {
+      text: ({lastUpdatedAt}) => {
+        const date = new Date(lastUpdatedAt * 1000);
+        return `最終更新: ${date.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}`;
+      },
+    },
+
     navbar: {
       title: 'My Site',
       logo: {
@@ -119,25 +120,21 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/SoundOrion/docusaurus',
+          href: REPO_URL,
           label: 'GitHub',
           position: 'right',
         },
       ],
     },
+
     footer: {
       style: 'dark',
       links: [
         {
           title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
+          items: [{ label: 'Tutorial', to: '/docs/intro' }],
         },
         {
           title: 'Community',
@@ -159,14 +156,8 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
+            { label: 'Blog', to: '/blog' },
+            { label: 'GitHub', href: REPO_URL },
           ],
         },
       ],
