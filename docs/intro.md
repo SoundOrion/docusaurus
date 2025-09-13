@@ -74,13 +74,25 @@ npm run build
 + onBrokenLinks: 'log'
 ```
 
-なるほど！幅広い言語を扱う予定ですね 👍
-その場合、**Prism の追加言語設定にまとめて登録**しておくのがおすすめです。
-
----
-
 
 ## 🔹 各言語の Markdown 記法サンプル
+
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello, C!\n");
+    return 0;
+}
+```
+
+```cpp
+#include <iostream>
+using namespace std;
+int main() {
+    cout << "Hello, C++!" << endl;
+    return 0;
+}
+```
 
 ```csharp
 using System;

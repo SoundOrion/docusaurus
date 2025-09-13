@@ -171,6 +171,8 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: [
+        'c',           // C
+        'cpp',         // C++
         'csharp',      // C#
         'python',      // Python
         'go',          // Go
