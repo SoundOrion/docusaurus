@@ -50,7 +50,11 @@ const config: Config = {
           showLastUpdateTime: true,
         },
         blog: {
-          showReadingTime: true,
+          showReadingTime: false,         // 読了時間は通常不要
+          blogTitle: 'リリースノート',
+          blogDescription: 'プロダクトのリリース履歴',
+          blogSidebarTitle: 'すべてのリリース',
+          blogSidebarCount: 'ALL',
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
