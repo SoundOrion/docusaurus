@@ -73,3 +73,53 @@ npm run build
 - onBrokenLinks: 'throw'
 + onBrokenLinks: 'log'
 ```
+
+なるほど！幅広い言語を扱う予定ですね 👍
+その場合、**Prism の追加言語設定にまとめて登録**しておくのがおすすめです。
+
+---
+
+
+## 🔹 各言語の Markdown 記法サンプル
+
+```csharp
+using System;
+class Program {
+    static void Main() {
+        Console.WriteLine("Hello from C#!");
+    }
+}
+```
+
+```python
+def hello():
+    print("Hello from Python!")
+
+hello()
+```
+
+```go
+package main
+import "fmt"
+func main() {
+    fmt.Println("Hello from Go!")
+}
+```
+
+```rust
+fn main() {
+    println!("Hello from Rust!");
+}
+```
+
+```ruby
+puts "Hello from Ruby!"
+```
+
+```powershell
+Write-Output "Hello from PowerShell!"
+```
+
+```bash
+echo "Hello from Bash!"
+```
