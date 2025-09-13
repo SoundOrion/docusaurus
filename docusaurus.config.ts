@@ -178,6 +178,7 @@ const config: Config = {
         'ruby',        // Ruby
         'powershell',  // PowerShell
         'bash',        // Bash
+        'sql',         // SQL
       ],
     },
   } satisfies Preset.ThemeConfig,
