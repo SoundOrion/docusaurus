@@ -62,7 +62,7 @@ const config: Config = {
           editUrl: buildEditUrl(''),
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
-          // routeBasePath: 'releases',   // URL が /releases になる
+          routeBasePath: 'releases',   // URL が /releases になる
           onUntruncatedBlogPosts: 'warn',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
@@ -86,7 +86,7 @@ const config: Config = {
         indexBlog: true,
         indexPages: true,
         docsRouteBasePath: '/docs',
-        blogRouteBasePath: '/blog',
+        blogRouteBasePath: '/releases',
         language: ['ja', 'en'],
       },
     ],
@@ -124,7 +124,7 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        { to: '/releases', label: 'Release Notes', position: 'left' },
         {
           href: REPO_URL,
           label: 'GitHub',
@@ -160,7 +160,7 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            { label: 'Blog', to: '/blog' },
+            { label: 'Release Notes', to: '/releases' },
             { label: 'GitHub', href: REPO_URL },
           ],
         },
