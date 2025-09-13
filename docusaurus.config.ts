@@ -37,6 +37,9 @@ const config: Config = {
     locales: ['ja'],
   },
 
+   // ビルド出力の URL 末尾のスラッシュを統一
+  trailingSlash: false,
+
   presets: [
     [
       'classic',
@@ -96,6 +99,11 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
 
+    // ダーク/ライトモードを OS の設定に追随
+    colorMode: {
+      respectPrefersColorScheme: true,
+    },
+
     docs: {
       sidebar: {
         hideable: true,
@@ -104,12 +112,12 @@ const config: Config = {
     },
 
     // 最終更新を JST で表示
-    lastUpdated: {
-      text: ({lastUpdatedAt}) => {
-        const date = new Date(lastUpdatedAt * 1000);
-        return `最終更新: ${date.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}`;
-      },
-    },
+    // lastUpdated: {
+    //   text: ({lastUpdatedAt}) => {
+    //     const date = new Date(lastUpdatedAt * 1000);
+    //     return `最終更新: ${date.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}`;
+    //   },
+    // },
 
     navbar: {
       title: 'My Site',
