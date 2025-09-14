@@ -4,6 +4,10 @@
  * work well for content-centric websites.
  */
 
+/* ~ は webpack の解決記号 → node_modules/katex/dist/katex.min.css を参照します */
+/* ビルド成果物に CSS が埋め込まれるので、オフライン環境でも動作します*/
+@import "~katex/dist/katex.min.css";
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #2e8555;

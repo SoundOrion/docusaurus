@@ -51,6 +51,8 @@ const config: Config = {
           sidebarCollapsible: true,
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
         },
         blog: {
           showReadingTime: false,         // 読了時間は通常不要
@@ -69,6 +71,8 @@ const config: Config = {
           onUntruncatedBlogPosts: 'warn',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
         },
         theme: {
           customCss: './src/css/custom.css',
