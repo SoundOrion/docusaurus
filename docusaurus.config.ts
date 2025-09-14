@@ -2,7 +2,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// GitHub リポジトリ情報を変数化
+// ===== GitHub リポジトリ情報 =====
 const ORG_NAME = 'SoundOrion';
 const PROJECT_NAME = 'docusaurus';
 const REPO_URL = `https://github.com/${ORG_NAME}/${PROJECT_NAME}`;
@@ -35,27 +35,34 @@ const config: Config = {
   i18n: {
     defaultLocale: 'ja',
     locales: ['ja', 'en'],
+    localeConfigs: {
+      ja: { htmlLang: 'ja-JP' },
+      en: { htmlLang: 'en' },
+    },
   },
 
-   // ビルド出力の URL 末尾のスラッシュを統一
+  // URL 末尾スラッシュ統一
   trailingSlash: false,
 
   presets: [
     [
       'classic',
       {
+        // === Docs（ユーザーマニュアル） ===
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: buildEditUrl(''), // docs 以下は Docusaurus が追記してくれる
+          editUrl: buildEditUrl(''),
           sidebarCollapsed: true,
           sidebarCollapsible: true,
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+          // 数式（KaTeX）
           remarkPlugins: [require('remark-math')],
           rehypePlugins: [require('rehype-katex')],
         },
+        // === Blog（リリースノート） ===
         blog: {
-          showReadingTime: false,         // 読了時間は通常不要
+          showReadingTime: false,
           blogTitle: 'Release Notes',
           blogDescription: 'プロダクトのリリース履歴',
           blogSidebarTitle: 'すべてのリリース',
@@ -67,15 +74,16 @@ const config: Config = {
           editUrl: buildEditUrl(''),
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
-          routeBasePath: 'releases',   // URL が /releases になる
+          routeBasePath: 'releases',     // /releases 配下に
           onUntruncatedBlogPosts: 'warn',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
+          // 数式（KaTeX）
           remarkPlugins: [require('remark-math')],
           rehypePlugins: [require('rehype-katex')],
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: './src/css/custom.css', // ← KaTeX CSS を custom.css で読み込み（後述）
         },
       } satisfies Preset.Options,
     ],
@@ -85,6 +93,7 @@ const config: Config = {
   markdown: { mermaid: true },
 
   plugins: [
+    // === ローカル検索 ===
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
@@ -92,18 +101,20 @@ const config: Config = {
         indexDocs: true,
         indexBlog: true,
         indexPages: true,
-        docsRouteBasePath: '/docs',
-        blogRouteBasePath: '/releases',
+        // NOTE: 先頭スラッシュなしの方が安全（baseUrl 変更時の混乱を避ける）
+        docsRouteBasePath: 'docs',
+        blogRouteBasePath: 'releases',
         language: ['ja', 'en'],
       },
     ],
+    // === 画像ズーム ===
     ['docusaurus-plugin-image-zoom', { selector: '.markdown img' }],
   ],
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
 
-    // ダーク/ライトモードを OS の設定に追随
+    // OS に追随（必要なら手動切替を出す：disableSwitch: false）
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -115,14 +126,6 @@ const config: Config = {
       },
     },
 
-    // 最終更新を JST で表示
-    // lastUpdated: {
-    //   text: ({lastUpdatedAt}) => {
-    //     const date = new Date(lastUpdatedAt * 1000);
-    //     return `最終更新: ${date.toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}`;
-    //   },
-    // },
-
     navbar: {
       title: 'My Site',
       logo: {
@@ -132,23 +135,13 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'tutorialSidebar', // ← sidebars.ts の ID に合わせる（必要ならリネーム）
           position: 'left',
-          label: 'Docs',
+          label: 'ドキュメント',        // ← 「Docs」→「ドキュメント」に変更
         },
-        {
-          type: 'localeDropdown',
-          position: 'right',  // 通常は右端に出す
-        },
-        { 
-          to: '/releases', 
-          label: 'Release Notes', 
-          position: 'left' },
-        {
-          href: REPO_URL,
-          label: 'GitHub',
-          position: 'right',
-        },
+        { to: '/releases', label: 'リリースノート', position: 'left' },
+        { type: 'localeDropdown', position: 'right' }, // 言語切替
+        { href: REPO_URL, label: 'GitHub', position: 'right' },
       ],
     },
 
