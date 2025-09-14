@@ -63,7 +63,7 @@ const config: Config = {
         // === Blog（リリースノート） ===
         blog: {
           showReadingTime: false,
-          blogTitle: 'Release Notes',
+          blogTitle: 'リリースノート',
           blogDescription: 'プロダクトのリリース履歴',
           blogSidebarTitle: 'すべてのリリース',
           blogSidebarCount: 'ALL',
@@ -150,7 +150,7 @@ const config: Config = {
       links: [
         {
           title: 'Learn',
-          items: [{ label: 'Docs', to: '/docs/intro' }],
+          items: [{ label: 'ドキュメント', to: '/docs/intro' }],
         },
         {
           title: 'Community',
@@ -172,7 +172,7 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            { label: 'Release Notes', to: '/releases' },
+            { label: 'リリースノート', to: '/releases' },
             { label: 'GitHub', href: REPO_URL },
           ],
         },
