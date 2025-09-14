@@ -130,7 +130,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         { to: '/releases', label: 'Release Notes', position: 'left' },
         {
@@ -145,8 +145,8 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
-          items: [{ label: 'Tutorial', to: '/docs/intro' }],
+          title: 'Learn',
+          items: [{ label: 'Docs', to: '/docs/intro' }],
         },
         {
           title: 'Community',
