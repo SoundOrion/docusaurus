@@ -34,7 +34,7 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'ja',
-    locales: ['ja'],
+    locales: ['ja', 'en'],
   },
 
    // ビルド出力の URL 末尾のスラッシュを統一
@@ -136,7 +136,14 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
-        { to: '/releases', label: 'Release Notes', position: 'left' },
+        {
+          type: 'localeDropdown',
+          position: 'right',  // 通常は右端に出す
+        },
+        { 
+          to: '/releases', 
+          label: 'Release Notes', 
+          position: 'left' },
         {
           href: REPO_URL,
           label: 'GitHub',
