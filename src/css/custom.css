@@ -28,3 +28,46 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.backToTop {
+  position: fixed;
+  right: 1.25rem;       /* 20px */
+  bottom: 1.25rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 1000;        /* 画像ズーム等より上に */
+  color: var(--ifm-color-white);
+  background: var(--ifm-color-primary);
+  box-shadow: 0 6px 18px rgba(0,0,0,.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease, background .2s ease;
+}
+
+.backToTop:hover {
+  filter: brightness(1.05);
+}
+
+.backToTop:focus-visible {
+  outline: 2px solid var(--ifm-color-primary-dark);
+  outline-offset: 2px;
+}
+
+.backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ダークモード配慮（必要なら色のチューニング） */
+html[data-theme='dark'] .backToTop {
+  background: var(--ifm-color-primary);
+  color: #fff;
+}
+
