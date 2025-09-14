@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import {getAnnouncementBar} from './scripts/releasesMeta';
 
 // ===== GitHub リポジトリ情報 =====
 const ORG_NAME = 'SoundOrion';
@@ -197,14 +198,8 @@ const config: Config = {
     },
 
     // Announcement bar（お知らせバー）
-    announcementBar: {
-      id: 'release-2025-09-15',  // リリースごとにユニークなIDにする
-      content:
-        '📰 新しいリリースノートを公開しました！ <a href="/releases" target="_self">詳細を見る</a>',
-      backgroundColor: '#005b47',
-      textColor: '#ffffff',
-      isCloseable: true,
-    },
+  announcementBar: getAnnouncementBar(),
+  
   } satisfies Preset.ThemeConfig,
 };
 
