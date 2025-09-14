@@ -195,6 +195,16 @@ const config: Config = {
         'sql',         // SQL
       ],
     },
+
+    // Announcement bar（お知らせバー）
+    announcementBar: {
+      id: 'release-2025-09-15',  // リリースごとにユニークなIDにする
+      content:
+        '📰 新しいリリースノートを公開しました！ <a href="/releases" target="_self">詳細を見る</a>',
+      backgroundColor: '#005b47',
+      textColor: '#ffffff',
+      isCloseable: true,
+    },
   } satisfies Preset.ThemeConfig,
 };
 
