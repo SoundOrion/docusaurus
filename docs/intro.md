@@ -142,3 +142,5 @@ FROM users
 WHERE status = 'active'
 ORDER BY created_at DESC;
 ```
+
+![代替テキスト](/img/docusaurus-social-card.jpg)
