@@ -54,7 +54,7 @@ const config: Config = {
         },
         blog: {
           showReadingTime: false,         // 読了時間は通常不要
-          blogTitle: 'リリースノート',
+          //blogTitle: 'リリースノート',
           blogDescription: 'プロダクトのリリース履歴',
           blogSidebarTitle: 'すべてのリリース',
           blogSidebarCount: 'ALL',
