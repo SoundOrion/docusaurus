@@ -17,3 +17,18 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+visual-studio:
+  label: Visual Studio
+  permalink: /visual-studio
+  description: Visual Studio に関するリリースや記事
+
+release:
+  label: Release
+  permalink: /tags/release
+  description: リリースノート
+
+17-14:
+  label: '17.14'
+  permalink: /17-14
+  description: Visual Studio 17.14 関連
