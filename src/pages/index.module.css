@@ -60,8 +60,8 @@
 .heroBgA {
   background: radial-gradient(
     60% 60% at 15% 20%,
-    rgba(255, 182, 193, 0.25),   /* pastel pink (透明度控えめ) */
-    rgba(255, 228, 196, 0.15),   /* peach */
+    rgba(144, 238, 144, 0.22),   /* pastel green (左上) */
+    rgba(173, 216, 230, 0.18),   /* pastel blue hint */
     transparent 70%
   );
 }
@@ -69,8 +69,8 @@
 .heroBgB {
   background: radial-gradient(
     70% 70% at 85% 30%,
-    rgba(173, 216, 230, 0.25),   /* pastel blue */
-    rgba(144, 238, 144, 0.15),   /* pastel green */
+    rgba(255, 182, 193, 0.25),   /* pastel pink (右上) */
+    rgba(255, 228, 196, 0.15),   /* peach */
     transparent 70%
   );
 }
@@ -78,7 +78,7 @@
 .heroBgC {
   background: radial-gradient(
     50% 50% at 50% 90%,
-    rgba(221, 160, 221, 0.2),   /* pastel purple */
+    rgba(221, 160, 221, 0.18),   /* pastel purple (下) */
     transparent 70%
   );
 }
@@ -88,29 +88,29 @@
 /* ========================= */
 [data-theme='dark'] .heroBgA {
   background: radial-gradient(
-    50% 50% at 20% 20%,
-    rgba(0, 255, 200, 0.35),   /* neon green */
-    rgba(0, 128, 255, 0.25),   /* neon blue */
+    50% 50% at 15% 20%,
+    rgba(0, 255, 180, 0.32),   /* neon green (左上) */
+    rgba(0, 180, 255, 0.22),   /* neon aqua hint */
     transparent 70%
   );
-  filter: blur(20px); /* ← 読みやすさ優先で弱め */
+  filter: blur(22px);
 }
 
 [data-theme='dark'] .heroBgB {
   background: radial-gradient(
-    60% 60% at 80% 25%,
-    rgba(255, 0, 200, 0.3),    /* neon pink */
-    rgba(255, 200, 0, 0.25),   /* neon yellow */
+    60% 60% at 85% 30%,
+    rgba(255, 0, 200, 0.28),   /* neon pink (右上) */
+    rgba(255, 120, 80, 0.2),   /* neon coral hint */
     transparent 70%
   );
-  filter: blur(25px);
+  filter: blur(26px);
 }
 
 [data-theme='dark'] .heroBgC {
   background: radial-gradient(
     50% 50% at 50% 90%,
-    rgba(138, 43, 226, 0.25),  /* neon purple */
+    rgba(138, 43, 226, 0.25),  /* neon purple (下) */
     transparent 70%
   );
-  filter: blur(30px);
+  filter: blur(28px);
 }
