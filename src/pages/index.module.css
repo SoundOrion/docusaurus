@@ -10,48 +10,107 @@
   margin: 0 0 1.25rem;
   font-weight: 800;
   letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1; /* 文字を常に最前面に */
 }
 
 .heroLead {
   font-size: 1.1rem;
   color: var(--ifm-font-color-secondary);
   margin: 0 0 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .heroActions :global(.button) {
   margin-right: .75rem;
-}
-
-.heroBgA,
-.heroBgB {
-  position: absolute;
-  inset: -10% -20%;
-  pointer-events: none;
-  z-index: 0;
-}
-.heroBgA {
-  background: radial-gradient(40% 40% at 10% 10%, rgba(0,91,71,.1), transparent 60%);
-}
-.heroBgB {
-  background: radial-gradient(40% 40% at 90% 30%, rgba(0,200,160,.08), transparent 60%);
-}
-
-/* ボタン内でアイコンとテキストを横並び・間隔調整 */
-.heroActions :global(.button) {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* アイコンのサイズと線の太さ */
 .icon {
   width: 20px;
   height: 20px;
   stroke-width: 1.75;
 }
 
-/* ほんのりモダンなホバー感 */
 .heroActions :global(.button):hover .icon {
   transform: translateY(-1px);
   transition: transform .15s ease;
+}
+
+/* ========================= */
+/* 共通 背景設定              */
+/* ========================= */
+.heroBgA,
+.heroBgB,
+.heroBgC {
+  position: absolute;
+  inset: -10% -20%;
+  pointer-events: none;
+  z-index: 0; /* 常にテキストより背面 */
+}
+
+/* ========================= */
+/* ライトモード → パステル   */
+/* ========================= */
+.heroBgA {
+  background: radial-gradient(
+    60% 60% at 15% 20%,
+    rgba(255, 182, 193, 0.25),   /* pastel pink (透明度控えめ) */
+    rgba(255, 228, 196, 0.15),   /* peach */
+    transparent 70%
+  );
+}
+
+.heroBgB {
+  background: radial-gradient(
+    70% 70% at 85% 30%,
+    rgba(173, 216, 230, 0.25),   /* pastel blue */
+    rgba(144, 238, 144, 0.15),   /* pastel green */
+    transparent 70%
+  );
+}
+
+.heroBgC {
+  background: radial-gradient(
+    50% 50% at 50% 90%,
+    rgba(221, 160, 221, 0.2),   /* pastel purple */
+    transparent 70%
+  );
+}
+
+/* ========================= */
+/* ダークモード → ネオン     */
+/* ========================= */
+[data-theme='dark'] .heroBgA {
+  background: radial-gradient(
+    50% 50% at 20% 20%,
+    rgba(0, 255, 200, 0.35),   /* neon green */
+    rgba(0, 128, 255, 0.25),   /* neon blue */
+    transparent 70%
+  );
+  filter: blur(20px); /* ← 読みやすさ優先で弱め */
+}
+
+[data-theme='dark'] .heroBgB {
+  background: radial-gradient(
+    60% 60% at 80% 25%,
+    rgba(255, 0, 200, 0.3),    /* neon pink */
+    rgba(255, 200, 0, 0.25),   /* neon yellow */
+    transparent 70%
+  );
+  filter: blur(25px);
+}
+
+[data-theme='dark'] .heroBgC {
+  background: radial-gradient(
+    50% 50% at 50% 90%,
+    rgba(138, 43, 226, 0.25),  /* neon purple */
+    transparent 70%
+  );
+  filter: blur(30px);
 }
