@@ -22,13 +22,26 @@
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
+/* ダーク時はビビッドに */
 [data-theme='dark'] {
-  --ifm-color-primary: #00c7a0;            /* ダーク時はビビッドに */
+  --ifm-color-primary: #00c7a0;            
   --ifm-color-primary-dark: #00b491;
   --ifm-color-primary-darker: #00a988;
   --ifm-color-primary-darkest: #008a6f;
   --ifm-color-primary-light: #00dab0;
   --ifm-color-primary-lighter: #1ae0bb;
   --ifm-color-primary-lightest: #40e6c7;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* モダン感重視（ティール系）*/
+[data-theme='dark'] {
+  --ifm-color-primary: #0d9488;
+  --ifm-color-primary-dark: #0c7a6f;
+  --ifm-color-primary-darker: #0a635a;
+  --ifm-color-primary-darkest: #064e45;
+  --ifm-color-primary-light: #14b8a6;
+  --ifm-color-primary-lighter: #2dd4bf;
+  --ifm-color-primary-lightest: #5eead4;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
