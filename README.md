@@ -188,3 +188,11 @@ flowchart TD
 
 ```
 
+## ライセンス
+
+このプロジェクトは MIT ライセンスのもと公開されています。詳細は [LICENSE](./LICENSE) をご確認ください。
+
+---
+
+### 謝辞
+本プロジェクトは、Meta によるオープンソースプロジェクト [Docusaurus](https://docusaurus.io/) をベースに構築されています（MITライセンス）。
