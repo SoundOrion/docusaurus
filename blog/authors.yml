@@ -29,6 +29,5 @@ anonymous:
   title: Docusaurus Sample
   url: mailto:dummy@example.com
   image_url: /img/avatar.png
-  socials:
-    github: your-github-id
+  page: true
 
