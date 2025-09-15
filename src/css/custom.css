@@ -7,6 +7,13 @@
 /* ~ は webpack の解決記号 → node_modules/katex/dist/katex.min.css を参照します */
 /* ビルド成果物に CSS が埋め込まれるので、オフライン環境でも動作します*/
 @import "~katex/dist/katex.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+  --ifm-font-family-base: 'Inter', 'Noto Sans JP', system-ui, -apple-system,
+                          BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --ifm-heading-font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
 
 /* You can override the default Infima variables here. */
 :root {
