@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <Layout
       title="Docs Portal"
-      description="社内プロダクトのドキュメントとリリースノートのポータルサイト">
+      description="社内システムのサポートサイト。ドキュメントとリリースノートをまとめて確認できます。">
       <Hero />
     </Layout>
   );
@@ -19,11 +19,13 @@ function Hero() {
     <header className={clsx('container', styles.hero)}>
       <div className={styles.heroInner}>
         <Heading as="h1" className={styles.heroTitle}>
-          ドキュメントとリリースノートを、<br />ひとつのポータルで。
+          社内システムのサポートサイト。<br />
+          ドキュメントとリリースノートを、<br />
+          ひとつのポータルで。
         </Heading>
         <p className={styles.heroLead}>
-          Markdown を書いて push するだけ。CI/CD が自動で公開。<br />
-          画像ズーム・検索・数式・i18n まで標準対応。
+          利用方法から最新の変更点まで。<br />
+          必要な情報をまとめて確認できます。
         </p>
         <div className={styles.heroActions}>
           <Link className="button button--primary button--lg" to="/docs/intro">
