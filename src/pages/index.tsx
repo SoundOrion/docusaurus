@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import { BookOpen, Newspaper } from 'lucide-react'; // ← 追加
 import styles from './index.module.css';
 
 export default function Home() {
@@ -29,10 +30,12 @@ function Hero() {
         </p>
         <div className={styles.heroActions}>
           <Link className="button button--primary button--lg" to="/docs/intro">
-            📘 ドキュメントを見る
+            <BookOpen aria-hidden className={styles.icon} />
+            <span>ドキュメントを見る</span>
           </Link>
           <Link className="button button--secondary button--lg" to="/releases">
-            📰 リリースノート
+            <Newspaper aria-hidden className={styles.icon} />
+            <span>リリースノート</span>
           </Link>
         </div>
       </div>

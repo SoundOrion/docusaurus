@@ -35,3 +35,23 @@
 .heroBgB {
   background: radial-gradient(40% 40% at 90% 30%, rgba(0,200,160,.08), transparent 60%);
 }
+
+/* ボタン内でアイコンとテキストを横並び・間隔調整 */
+.heroActions :global(.button) {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* アイコンのサイズと線の太さ */
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.75;
+}
+
+/* ほんのりモダンなホバー感 */
+.heroActions :global(.button):hover .icon {
+  transform: translateY(-1px);
+  transition: transform .15s ease;
+}
