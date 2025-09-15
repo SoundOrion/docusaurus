@@ -12,8 +12,8 @@ const REPO_URL = `https://github.com/${ORG_NAME}/${PROJECT_NAME}`;
 const buildEditUrl = (path: string) => `${REPO_URL}/tree/main/${path}`;
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Docs Portal',
+  tagline: 'Documentation and Release Notes Portal',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -128,9 +128,9 @@ const config: Config = {
     },
 
     navbar: {
-      title: 'My Site',
+      title: 'Docs Portal',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Docs Portal Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -163,11 +163,7 @@ const config: Config = {
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
+            }
           ],
         },
         {
