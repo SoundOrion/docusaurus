@@ -1,39 +1,42 @@
-import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
-
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+export default function Home() {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">
-          このサイトは社内プロダクトの<strong>ユーザーマニュアル</strong>と<strong>リリースノート</strong>をまとめたポータルです。
-        </p>
-      </div>
-    </header>
+    <Layout
+      title="Docs Portal"
+      description="社内プロダクトのドキュメントとリリースノートのポータルサイト">
+      <Hero />
+    </Layout>
   );
 }
 
-export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+function Hero() {
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="社内プロダクトのドキュメントポータル（ドキュメント／リリースノート）">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
-    </Layout>
+    <header className={clsx('container', styles.hero)}>
+      <div className={styles.heroInner}>
+        <Heading as="h1" className={styles.heroTitle}>
+          ドキュメントとリリースノートを、<br />ひとつのポータルで。
+        </Heading>
+        <p className={styles.heroLead}>
+          Markdown を書いて push するだけ。CI/CD が自動で公開。<br />
+          画像ズーム・検索・数式・i18n まで標準対応。
+        </p>
+        <div className={styles.heroActions}>
+          <Link className="button button--primary button--lg" to="/docs/intro">
+            📘 ドキュメントを見る
+          </Link>
+          <Link className="button button--secondary button--lg" to="/releases">
+            📰 リリースノート
+          </Link>
+        </div>
+      </div>
+      {/* 背景のグラデーション */}
+      <div aria-hidden className={styles.heroBgA} />
+      <div aria-hidden className={styles.heroBgB} />
+    </header>
   );
 }
