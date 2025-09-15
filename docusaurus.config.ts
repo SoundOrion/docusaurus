@@ -113,7 +113,11 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/docusaurus-social-card.jpg',
+    // OGP（Open Graph Protocol）画像
+    // サイズ: 1200 × 630 px（16:9 近く）
+    // ファイル形式: PNG / JPG / WebP
+    // ファイルサイズ: 300KB 以下が理想（読み込み速度的に）
+    // image: 'img/docusaurus-social-card.jpg',
 
     // OS に追随（必要なら手動切替を出す：disableSwitch: false）
     colorMode: {
