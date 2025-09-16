@@ -2,7 +2,7 @@ name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
-    branches: [ main ]   # デフォルトブランチを指定
+    branches: [ main ]   # ← デフォルトブランチに合わせて変更
   workflow_dispatch:
 
 permissions:
@@ -22,8 +22,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 20
+          cache: npm
 
       - run: npm ci
       - run: npm run build
