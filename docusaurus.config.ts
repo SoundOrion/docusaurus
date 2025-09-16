@@ -21,11 +21,13 @@ const config: Config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  // GitHub Pages 用設定
   // Set the production url of your site here
-  url: 'https://witty-ground-042f65900.1.azurestaticapps.net',
+  url: 'https://SoundOrion.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/docusaurus/',
+  deploymentBranch: 'gh-pages',   // ← ここに追加！
 
   organizationName: ORG_NAME,
   projectName: PROJECT_NAME,
