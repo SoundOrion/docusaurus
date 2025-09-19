@@ -77,19 +77,26 @@
 
 /* ちょい上品な見た目：やわらか影とグラデ枠 */
 .arg-card { border-radius: 14px; overflow: hidden; }
+/* 軽く間隔を空ける */
+.arg-card { margin-block: 0.25rem; }   /* = margin-top/bottom 0.75rem */
+
+/* もしくは次のカードだけに上マージン（最後は空けない） */
+.arg-card + .arg-card { margin-top: 0.25rem; }
+
+
 .arg-card.fancy {
   position: relative;
   background: var(--ifm-card-background-color);
   box-shadow: 0 6px 20px rgba(0,0,0,.06);
   transition: transform .2s ease, box-shadow .2s ease;
 }
-.arg-card.fancy:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.09); }
+.arg-card.fancy:hover { transform: translateY(-0.5px); box-shadow: 0 10px 28px rgba(0,0,0,.09); }
 
 /* グラデーション境界（上辺に3pxライン） */
 .arg-card.fancy::before {
   content: "";
   position: absolute; inset: 0 0 auto 0; height: 3px;
-  background: linear-gradient(90deg, #7c3aed, #22d3ee, #10b981);
+  /* background: linear-gradient(90deg, #7c3aed, #22d3ee, #10b981); */
 }
 
 /* Copyボタンの位置微調整 */
@@ -97,7 +104,7 @@
 
 .arg-grid {
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
   /* 幅に応じて自動で列数増減：最小 280px を確保しつつ最大で等分 */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
