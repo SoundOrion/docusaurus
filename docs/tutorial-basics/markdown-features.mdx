@@ -34,6 +34,26 @@ import Arg from '@site/src/components/Arg';
   例: mytool.exe --threads 4
 </Arg>
 
+<div className="arg-grid">
+  <Arg name="-o, --output" badge="必須" badgeColor="success"
+       param={`<ファイル名>\n（絶対パス / 相対パス）`}
+       usage="mytool.exe -o result.txt"
+       tags={['I/O','ファイル']}>
+    出力先のファイルを指定します。
+    存在しないディレクトリは自動作成されます。
+  </Arg>
+
+  <Arg name="--threads" badge="任意" badgeColor="info"
+       param={`<数値>\n（例: 1, 4, 8）`}
+       usage="mytool.exe --threads 4"
+       tags={['性能','並列']}>
+    並列処理に使用するスレッド数。
+    指定しない場合はCPUコア数に合わせます。
+  </Arg>
+
+  <!-- 以降どんどん追加しても自動できれいに並ぶ -->
+</div>
+
 <Arg badge="必須"   badgeType="success" />
 <Arg badge="任意"   badgeType="info" />
 <Arg badge="実験的" badgeType="warning" />
