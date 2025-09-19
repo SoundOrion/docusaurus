@@ -64,6 +64,11 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-.arg-preline {
-  white-space: pre-line; /* 改行文字を <br> と同様に表示 */
-}
+.arg-preline { white-space: pre-line; }      /* 改行文字をそのまま行送りとして表示 */
+.arg-row { margin-top: .5rem; }
+.arg-card code { font-size: .95em; }
+/* アウトラインの線を少し太く */
+.badge--outline { border-width: 1.5px; }
+
+/* 角丸を強めに（必要なら） */
+.badge { border-radius: 999px; }

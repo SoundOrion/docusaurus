@@ -11,7 +11,8 @@ import Arg from '@site/src/components/Arg';
 <Arg
   name="--threads"
   badge="任意あああああ"
-  badgeType="info"
+  badgeColor="danger"
+  outline={true}
   param={`<数値>
 （例: 1, 4, 8）`}
 >
@@ -20,6 +21,18 @@ import Arg from '@site/src/components/Arg';
   例: mytool.exe --threads 4
 </Arg>
 
+<Arg
+  name="--threads"
+  badge="任意あああああ"
+  badgeColor="danger"
+  outline={false}
+  param={`<数値>
+（例: 1, 4, 8）`}
+>
+  並列処理に使用するスレッド数。
+  指定しない場合は自動でCPUコア数に合わせます。
+  例: mytool.exe --threads 4
+</Arg>
 
 <Arg badge="必須"   badgeType="success" />
 <Arg badge="任意"   badgeType="info" />
