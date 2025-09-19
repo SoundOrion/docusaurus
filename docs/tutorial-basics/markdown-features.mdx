@@ -34,6 +34,14 @@ import Arg from '@site/src/components/Arg';
   例: mytool.exe --threads 4
 </Arg>
 
+  <Arg name="--threads" badge="任意" badgeColor="info"
+       param={`<数値>\n（例: 1, 4, 8）`}
+       usage="mytool.exe --threads 4"
+       tags={['性能','並列']}>
+    並列処理に使用するスレッド数。
+    指定しない場合はCPUコア数に合わせます。
+  </Arg>
+  
 <div className="arg-grid">
   <Arg name="-o, --output" badge="必須" badgeColor="success"
        param={`<ファイル名>\n（絶対パス / 相対パス）`}
