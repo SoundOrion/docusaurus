@@ -17,13 +17,13 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #005b47;            /* メイン */
-  --ifm-color-primary-dark: #004f3e;       /* 少し暗い */
-  --ifm-color-primary-darker: #004538;     /* さらに暗い */
-  --ifm-color-primary-darkest: #00352b;    /* 最も暗い */
-  --ifm-color-primary-light: #0c6b56;      /* 少し明るい */
-  --ifm-color-primary-lighter: #1a7c65;    /* さらに明るい */
-  --ifm-color-primary-lightest: #33947d;   /* 最も明るい */
+  --ifm-color-primary: #004831;            /* メイン（深緑） */
+  --ifm-color-primary-dark: #003e2b;       /* 少し暗い */
+  --ifm-color-primary-darker: #003524;     /* さらに暗い */
+  --ifm-color-primary-darkest: #00281b;    /* 最も暗い */
+  --ifm-color-primary-light: #0b5a40;      /* 少し明るい */
+  --ifm-color-primary-lighter: #1a6b51;    /* さらに明るい */
+  --ifm-color-primary-lightest: #338066;   /* 最も明るい */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
@@ -42,24 +42,28 @@
 
 /* ダーク時はビビッドに */
 [data-theme='dark'] {
-  --ifm-color-primary: #00c7a0;            
-  --ifm-color-primary-dark: #00b491;
-  --ifm-color-primary-darker: #00a988;
-  --ifm-color-primary-darkest: #008a6f;
-  --ifm-color-primary-light: #00dab0;
-  --ifm-color-primary-lighter: #1ae0bb;
-  --ifm-color-primary-lightest: #40e6c7;
+  --ifm-color-primary: #009e7a;            /* メイン：深めの青緑 */
+  --ifm-color-primary-dark: #00896a;       /* 少し暗い */
+  --ifm-color-primary-darker: #00775d;     /* さらに暗い */
+  --ifm-color-primary-darkest: #005c48;    /* 最も暗い */
+  --ifm-color-primary-light: #00b28c;      /* 少し明るい */
+  --ifm-color-primary-lighter: #26c6a4;    /* さらに明るい */
+  --ifm-color-primary-lightest: #4fd6b8;   /* 最も明るい */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 /* モダン感重視（ティール系）*/
 [data-theme='dark'] {
-  --ifm-color-primary: #0d9488;
-  --ifm-color-primary-dark: #0c7a6f;
-  --ifm-color-primary-darker: #0a635a;
-  --ifm-color-primary-darkest: #064e45;
-  --ifm-color-primary-light: #14b8a6;
-  --ifm-color-primary-lighter: #2dd4bf;
-  --ifm-color-primary-lightest: #5eead4;
+  --ifm-color-primary: #0c7a6f;            /* メイン（シックな青緑） */
+  --ifm-color-primary-dark: #09645a;       /* 少し暗い */
+  --ifm-color-primary-darker: #074f47;     /* さらに暗い */
+  --ifm-color-primary-darkest: #053a34;    /* 最も暗い */
+  --ifm-color-primary-light: #119183;      /* 少し明るい */
+  --ifm-color-primary-lighter: #26a89b;    /* さらに明るい */
+  --ifm-color-primary-lightest: #45bcb0;   /* 最も明るい */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.arg-preline {
+  white-space: pre-line; /* 改行文字を <br> と同様に表示 */
 }
