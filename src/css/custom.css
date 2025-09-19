@@ -108,3 +108,13 @@
   /* 幅に応じて自動で列数増減：最小 280px を確保しつつ最大で等分 */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
+
+.arg-icon { width: 12px; height: 12px; }
+
+.arg-copy[data-copied="true"] {
+  background: var(--ifm-color-success);
+  border-color: var(--ifm-color-success);
+  color: var(--ifm-color-emphasis-0);
+  transform: translateY(-1px) scale(1.03);
+  transition: transform .15s ease, background .2s ease, color .2s ease;
+}

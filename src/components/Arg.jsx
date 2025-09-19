@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Copy, Check } from 'lucide-react';
 
 const normalize = v => (typeof v === 'string' ? v.trim() : v);
 
@@ -33,9 +34,20 @@ export default function Arg({
             </span>
           </h3>
           {usage && (
-            <button className="button button--sm button--secondary arg-copy" onClick={copy}>
+/*             <button className="button button--sm button--secondary arg-copy" onClick={copy}>
               {copied ? 'Copied!' : 'Copy'}
-            </button>
+            </button> */
+<button
+  className="button button--sm button--secondary arg-copy"
+  /* data-copied={copied} */
+  onClick={copy}
+  aria-label={copied ? 'Copied' : 'Copy to clipboard'}
+  title={copied ? 'Copied!' : 'Copy'}
+>
+  {copied ? <Check aria-hidden className="arg-icon" /> : <Copy aria-hidden className="arg-icon" />}
+</button>
+
+
           )}
         </div>
 
