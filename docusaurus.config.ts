@@ -23,11 +23,11 @@ const config: Config = {
 
   // GitHub Pages 用設定
   // Set the production url of your site here
-  url: 'https://SoundOrion.github.io',
+  url: 'https://soundorion.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/docusaurus/',
-  deploymentBranch: 'gh-pages',   // ← ここに追加！
+  baseUrl: '/',
+  deploymentBranch: 'gh-pages',
 
   organizationName: ORG_NAME,
   projectName: PROJECT_NAME,
