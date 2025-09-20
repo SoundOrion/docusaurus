@@ -146,3 +146,18 @@
   .arg-row,.arg-usage{ grid-template-columns:6rem 1fr; }
   .arg-codefield{ gap:.6rem; }
 }
+
+/* 開閉アニメ（auto高さの代替：grid-rowsトリック） */
+.arg-collapsible{
+  display:grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows .22s ease, opacity .22s ease;
+}
+.arg-collapsible[data-open="false"]{ grid-template-rows: 0fr; }
+.arg-collapsible > .arg-content{ overflow:hidden; }
+.arg-collapsible[data-open="false"] > .arg-content{ opacity:.0; }
+
+/* トグルの矢印回転 */
+.arg-toggle .arg-icon{ transition: transform .18s ease; }
+.arg-toggle[aria-expanded="false"] .arg-icon{ transform: rotate(-90deg); }
+/* アイコンサイズは既存 .arg-icon で統一（16px） */

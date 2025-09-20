@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Copy, Check } from 'lucide-react';
+import React, { useId, useState } from 'react';
+import { Copy, Check, ChevronDown } from 'lucide-react';
 
 type BadgeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';
 
@@ -10,8 +10,11 @@ interface ArgProps {
   outline?: boolean;
   param?: React.ReactNode;
   children?: React.ReactNode;
-  usage?: string | string[];   // ← 複数OK
+  usage?: string | string[];
   tags?: string[];
+  /** ← 追加 */
+  collapsible?: boolean;      // 折りたたみON/OFF
+  defaultOpen?: boolean;      // 初期展開状態（collapsible時のみ有効）
 }
 
 const normalize = (v: React.ReactNode): React.ReactNode =>
@@ -26,9 +29,13 @@ export default function Arg({
   children,
   usage,
   tags = [],
+  collapsible = false,
+  defaultOpen = true,
 }: ArgProps) {
   const usageList = Array.isArray(usage) ? usage : (usage ? [usage] : []);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [open, setOpen] = useState<boolean>(defaultOpen);
+  const contentId = useId();
 
   const copy = async (text: string, idx: number) => {
     if (!text) return;
@@ -36,10 +43,56 @@ export default function Arg({
       await navigator.clipboard.writeText(text);
       setCopiedIndex(idx);
       setTimeout(() => setCopiedIndex(null), 1200);
-    } catch {
-      // noop
-    }
+    } catch { /* noop */ }
   };
+
+  const Content = (
+    <>
+      {tags.length > 0 && (
+        <div className="arg-tags">
+          {tags.map((t, i) => (
+            <span key={i} className="badge badge--secondary badge--outline">{t}</span>
+          ))}
+        </div>
+      )}
+
+      <div className="arg-row">
+        <strong>パラメータ:</strong>
+        <div className="arg-preline">{normalize(param)}</div>
+      </div>
+
+      <div className="arg-row">
+        <strong>説明:</strong>
+        <div className="arg-preline">{normalize(children)}</div>
+      </div>
+
+      {usageList.length > 0 && (
+        <div className="arg-usage">
+          <span>使用例:</span>
+          <div className="arg-usage__content">
+            {usageList.map((u, i) => {
+              const copied = copiedIndex === i;
+              return (
+                <div key={i} className="arg-codefield">
+                  <code className="arg-codefield__code">{u}</code>
+                  <button
+                    type="button"
+                    className="icon-btn"
+                    data-copied={copied}
+                    onClick={() => copy(u, i)}
+                    aria-label={copied ? 'Copied' : 'Copy to clipboard'}
+                    title={copied ? 'Copied!' : 'Copy'}
+                  >
+                    {copied ? <Check aria-hidden className="arg-icon" /> : <Copy aria-hidden className="arg-icon" />}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </>
+  );
 
   return (
     <div className="card arg-card fancy">
@@ -51,53 +104,28 @@ export default function Arg({
               {badge}
             </span>
           </h3>
-          {/* ヘッダーにCopyは出さない（使用例の横に出す） */}
-        </div>
 
-        {tags.length > 0 && (
-          <div className="arg-tags">
-            {tags.map((t, i) => (
-              <span key={i} className="badge badge--secondary badge--outline">{t}</span>
-            ))}
-          </div>
-        )}
-
-        <div className="arg-row">
-          <strong>パラメータ:</strong>
-          <div className="arg-preline">{normalize(param)}</div>
-        </div>
-
-        <div className="arg-row">
-          <strong>説明:</strong>
-          <div className="arg-preline">{normalize(children)}</div>
-        </div>
-
-{usageList.length > 0 && (
-  <div className="arg-usage">
-    <span className="arg-label">使用例:</span>
-    <div className="arg-usage__content">
-      {usageList.map((u, i) => {
-        const copied = copiedIndex === i;
-        return (
-          <div key={i} className="arg-usage__item arg-codefield">
-            <code className="arg-codefield__code">{u}</code>
+          {collapsible && (
             <button
               type="button"
-              className="icon-btn arg-codefield__btn"
-              data-copied={copied}
-              onClick={() => copy(u, i)}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && copy(u, i)}
-              aria-label={copied ? 'Copied' : 'Copy to clipboard'}
-              title={copied ? 'Copied!' : 'Copy'}
+              className="icon-btn arg-toggle"
+              aria-expanded={open}
+              aria-controls={contentId}
+              onClick={() => setOpen(o => !o)}
+              title={open ? '閉じる' : '開く'}
             >
-              {copied ? <Check aria-hidden className="arg-icon" /> : <Copy aria-hidden className="arg-icon" />}
+              <ChevronDown aria-hidden className="arg-icon" />
             </button>
+          )}
+        </div>
+
+        {collapsible ? (
+          <div id={contentId} className="arg-collapsible" data-open={open}>
+            <div className="arg-content">{Content}</div>
           </div>
-        );
-      })}
-    </div>
-  </div>
-)}
+        ) : (
+          Content
+        )}
       </div>
     </div>
   );

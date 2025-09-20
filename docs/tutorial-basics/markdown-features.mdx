@@ -10,6 +10,32 @@ import Arg from '@site/src/components/Arg';
 # コマンドライン引数
 
 <Arg
+  collapsible
+  defaultOpen={false}
+  name="--threads"
+  badge="任意"
+  badgeColor="info"
+  usage={['mytool.exe --threads 4', 'mytool.exe --threads 8']}
+  param={`<数値>\n（例: 1, 4, 8）`}
+>
+  並列処理に使用するスレッド数。
+  指定しない場合はCPUコア数に合わせます。
+</Arg>
+
+<Arg
+  collapsible
+  defaultOpen={true}
+  name="--threads"
+  badge="任意"
+  badgeColor="info"
+  usage={['mytool.exe --threads 4', 'mytool.exe --threads 8']}
+  param={`<数値>\n（例: 1, 4, 8）`}
+>
+  並列処理に使用するスレッド数。
+  指定しない場合はCPUコア数に合わせます。
+</Arg>
+
+<Arg
   name="--threads"
   badge="任意"
   badgeColor="info"
