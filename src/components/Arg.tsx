@@ -72,31 +72,32 @@ export default function Arg({
           <div className="arg-preline">{normalize(children)}</div>
         </div>
 
-        {usageList.length > 0 && (
-          <div className="arg-usage">
-            <span>使用例:</span>
-            <div className="arg-usage__content">
-              {usageList.map((u, i) => {
-                const copied = copiedIndex === i;
-                return (
-                  <div key={i} className="arg-usage__item">
-                    <code>{u}</code>
-                    <button
-                      type="button"
-                      className="button button--sm button--secondary arg-copy"
-                      onClick={() => copy(u, i)}
-                      aria-label={copied ? 'Copied' : 'Copy to clipboard'}
-                      title={copied ? 'Copied!' : 'Copy'}
-                      data-copied={copied}
-                    >
-                      {copied ? <Check aria-hidden className="arg-icon" /> : <Copy aria-hidden className="arg-icon" />}
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+{usageList.length > 0 && (
+  <div className="arg-usage">
+    <span className="arg-label">使用例:</span>
+    <div className="arg-usage__content">
+      {usageList.map((u, i) => {
+        const copied = copiedIndex === i;
+        return (
+          <div key={i} className="arg-usage__item arg-codefield">
+            <code className="arg-codefield__code">{u}</code>
+            <button
+              type="button"
+              className="icon-btn arg-codefield__btn"
+              data-copied={copied}
+              onClick={() => copy(u, i)}
+              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && copy(u, i)}
+              aria-label={copied ? 'Copied' : 'Copy to clipboard'}
+              title={copied ? 'Copied!' : 'Copy'}
+            >
+              {copied ? <Check aria-hidden className="arg-icon" /> : <Copy aria-hidden className="arg-icon" />}
+            </button>
           </div>
-        )}
+        );
+      })}
+    </div>
+  </div>
+)}
       </div>
     </div>
   );

@@ -1,163 +1,148 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* ~ は webpack の解決記号 → node_modules/katex/dist/katex.min.css を参照します */
-/* ビルド成果物に CSS が埋め込まれるので、オフライン環境でも動作します*/
+/* ========== Global ========== */
 @import "~katex/dist/katex.min.css";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 
 :root {
-  --ifm-font-family-base: 'Inter', 'Noto Sans JP', system-ui, -apple-system,
-                          BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --ifm-heading-font-family: 'Inter', 'Noto Sans JP', sans-serif;
-}
-
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #004831;            /* メイン（深緑） */
-  --ifm-color-primary-dark: #003e2b;       /* 少し暗い */
-  --ifm-color-primary-darker: #003524;     /* さらに暗い */
-  --ifm-color-primary-darkest: #00281b;    /* 最も暗い */
-  --ifm-color-primary-light: #0b5a40;      /* 少し明るい */
-  --ifm-color-primary-lighter: #1a6b51;    /* さらに明るい */
-  --ifm-color-primary-lightest: #338066;   /* 最も明るい */
+  --ifm-font-family-base: 'Inter','Noto Sans JP',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --ifm-heading-font-family: 'Inter','Noto Sans JP',sans-serif;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(0,0,0,.1);
+
+  /* Brand (light) */
+  --ifm-color-primary: #004831;
+  --ifm-color-primary-dark: #003e2b;
+  --ifm-color-primary-darker: #003524;
+  --ifm-color-primary-darkest: #00281b;
+  --ifm-color-primary-light: #0b5a40;
+  --ifm-color-primary-lighter: #1a6b51;
+  --ifm-color-primary-lightest: #338066;
+
+  /* Arg tokens */
+  --arg-radius: 14px;
+  --arg-shadow: 0 6px 20px rgba(0,0,0,.06);
+  --arg-shadow-hover: 0 10px 28px rgba(0,0,0,.09);
+  --arg-border: var(--ifm-color-emphasis-200);
+  --arg-border-strong: var(--ifm-color-emphasis-300);
+  --arg-muted: var(--ifm-color-emphasis-600);
+  --arg-bg-soft: var(--ifm-card-background-color);
+  /* --arg-accent: linear-gradient(90deg,#7c3aed,#22d3ee,#10b981); */ /* top line */
+  --arg-code-bg: #f4f6f8; /* usage code bg (light) */
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* Dark theme */
+[data-theme='dark']{
+  --ifm-color-primary: #0c7a6f;
+  --ifm-color-primary-dark: #09645a;
+  --ifm-color-primary-darker: #074f47;
+  --ifm-color-primary-darkest: #053a34;
+  --ifm-color-primary-light: #119183;
+  --ifm-color-primary-lighter: #26a89b;
+  --ifm-color-primary-lightest: #45bcb0;
+  --docusaurus-highlighted-code-line-bg: rgba(0,0,0,.3);
+  --arg-code-bg: var(--ifm-background-surface-color,var(--ifm-background-color));
 }
 
-/* ダーク時はビビッドに */
-[data-theme='dark'] {
-  --ifm-color-primary: #009e7a;            /* メイン：深めの青緑 */
-  --ifm-color-primary-dark: #00896a;       /* 少し暗い */
-  --ifm-color-primary-darker: #00775d;     /* さらに暗い */
-  --ifm-color-primary-darkest: #005c48;    /* 最も暗い */
-  --ifm-color-primary-light: #00b28c;      /* 少し明るい */
-  --ifm-color-primary-lighter: #26c6a4;    /* さらに明るい */
-  --ifm-color-primary-lightest: #4fd6b8;   /* 最も明るい */
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* ========== Layout helpers ========== */
+.arg-grid{
+  display:grid;
+  gap:.5rem; /* tightened spacing */
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
 }
 
-/* モダン感重視（ティール系）*/
-[data-theme='dark'] {
-  --ifm-color-primary: #0c7a6f;            /* メイン（シックな青緑） */
-  --ifm-color-primary-dark: #09645a;       /* 少し暗い */
-  --ifm-color-primary-darker: #074f47;     /* さらに暗い */
-  --ifm-color-primary-darkest: #053a34;    /* 最も暗い */
-  --ifm-color-primary-light: #119183;      /* 少し明るい */
-  --ifm-color-primary-lighter: #26a89b;    /* さらに明るい */
-  --ifm-color-primary-lightest: #45bcb0;   /* 最も明るい */
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* grid内はカードのマージンを打ち消し */
+.arg-grid .arg-card{ margin-block:0; }
+
+/* 改行をそのまま行送りに */
+.arg-preline{ white-space: pre-line; }
+
+/* ========== Arg Card ========== */
+.arg-card{ border-radius: var(--arg-radius); overflow:hidden; margin-block:.4rem; }
+.arg-card.fancy{
+  position:relative;
+  background:var(--arg-bg-soft);
+  border:1px solid var(--arg-border);
+  box-shadow:var(--arg-shadow);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.arg-card.fancy:hover{ transform: translateY(-0.5px); box-shadow: var(--arg-shadow-hover); }
+
+/* 上辺アクセントライン */
+.arg-card.fancy::before{
+  content:"";
+  position:absolute; inset:0 0 auto 0; height:2px;
+  background: var(--arg-accent);
+  opacity:.6;
 }
 
-/* 改行文字を行送りにする */
-.arg-preline { white-space: pre-line; }
+.arg-header{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+.arg-title{ display:flex; align-items:center; gap:.6rem; margin:0; }
+.arg-title code{ font-size:.95rem; padding:.1rem .35rem; border-radius:8px; background:var(--ifm-color-emphasis-100); border:1px solid var(--arg-border); }
 
-/* カードの余白や行間 */
-.arg-row { margin-top: .5rem; gap: .5rem; display: grid; grid-template-columns: 6.5rem 1fr; }
-.arg-title { display: flex; align-items: center; gap: .5rem; margin: 0; }
-.arg-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .35rem 0 .1rem; }
-.arg-header { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
-.arg-usage { display: grid; grid-template-columns: 6.5rem 1fr; align-items: center; margin-top: .5rem; }
-.arg-usage code { font-size: .95em; }
-
-/* ちょい上品な見た目：やわらか影とグラデ枠 */
-.arg-card { border-radius: 14px; overflow: hidden; }
-/* 軽く間隔を空ける */
-.arg-card { margin-block: 0.25rem; }   /* = margin-top/bottom 0.75rem */
-
-/* もしくは次のカードだけに上マージン（最後は空けない） */
-.arg-card + .arg-card { margin-top: 0.25rem; }
-
-
-.arg-card.fancy {
-  position: relative;
-  background: var(--ifm-card-background-color);
-  box-shadow: 0 6px 20px rgba(0,0,0,.06);
-  transition: transform .2s ease, box-shadow .2s ease;
+/* ラベル行 */
+.arg-row{
+  margin-top:.6rem;
+  display:grid;
+  grid-template-columns:7.5rem 1fr;
+  gap:.6rem;
 }
-.arg-card.fancy:hover { transform: translateY(-0.5px); box-shadow: 0 10px 28px rgba(0,0,0,.09); }
+.arg-row > strong{ color: var(--arg-muted); font-weight:700; letter-spacing:.01em; }
 
-/* グラデーション境界（上辺に3pxライン） */
-.arg-card.fancy::before {
-  content: "";
-  position: absolute; inset: 0 0 auto 0; height: 3px;
-  /* background: linear-gradient(90deg, #7c3aed, #22d3ee, #10b981); */
+.arg-tags{ display:flex; flex-wrap:wrap; gap:.35rem; margin:.35rem 0 .1rem; }
+.arg-tags .badge{ border-radius:999px; }
+
+/* ========== Usage line (input-like) ========== */
+.arg-usage{
+  display:grid; grid-template-columns:7.5rem 1fr; align-items:start; margin-top:.6rem;
+}
+.arg-usage__content{ display:grid; gap:.45rem; }
+
+/* コード＋コピーの行 */
+.arg-codefield{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  align-items:center;
+  gap:.8rem;
 }
 
-/* Copyボタンの位置微調整 */
-.arg-copy { white-space: nowrap; }
-
-.arg-grid {
-  display: grid;
-  gap: 0.5rem;
-  /* 幅に応じて自動で列数増減：最小 280px を確保しつつ最大で等分 */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* コードを“入力欄”風に */
+.arg-codefield__code{
+  display:block;
+  min-width:0;
+  padding:.45rem .7rem;
+  border:1px solid var(--arg-border);
+  border-radius:10px;
+  background: var(--arg-code-bg);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  font-size:.95em;
 }
+/* 折り返したい場合は上の3行をコメントアウトして下を有効化
+.arg-codefield__code{ white-space: pre-wrap; word-break: break-word; overflow: visible; }
+*/
 
-.arg-icon { width: 16px; height: 16px; }
+/* ========== Icon button (Copy) ========== */
+.icon-btn{
+  width:32px; height:32px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:10px;
+  border:1px solid var(--arg-border);
+  background: var(--ifm-background-surface-color,var(--ifm-background-color));
+  color: var(--ifm-color-emphasis-700);
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  transition: transform .12s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+.icon-btn:hover{ transform: translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.10); }
+.icon-btn:active{ transform: translateY(0); }
+.icon-btn .arg-icon{ width:16px; height:16px; }
 
-.arg-copy[data-copied="true"] {
-  background: var(--ifm-color-success);
+.icon-btn:focus-visible{ outline:2px solid var(--ifm-color-primary); outline-offset:2px; }
+.icon-btn[data-copied="true"]{
+  background: color-mix(in oklab, var(--ifm-color-success) 92%, white 8%);
   border-color: var(--ifm-color-success);
   color: var(--ifm-color-emphasis-0);
-  transform: translateY(-1px) scale(1.03);
-  transition: transform .15s ease, background .2s ease, color .2s ease;
 }
 
-/* 使用例の行の並びと間隔を最適化 */
-.arg-usage__item{
-  display:flex;
-  align-items:center;
-  gap:.75rem;            /* ← ボタンとの間隔を広げる（好みで 1rem でも） */
+/* ========== Responsive tweak ========== */
+@media (max-width:640px){
+  .arg-row,.arg-usage{ grid-template-columns:6rem 1fr; }
+  .arg-codefield{ gap:.6rem; }
 }
-
-/* code を残り幅いっぱいに広げる */
-.arg-usage__item code{
-  display:block;         /* ← flex item として幅制御 */
-  flex:1 1 auto;         /* ← 残り幅を使う */
-  min-width:0;           /* ← 折り返し/省略を有効にするのに必須 */
-  padding:.25rem .5rem;  /* ← 余白ちょい足し（任意） */
-}
-
-/* ボタンは内容サイズのまま */
-.arg-copy{ flex:0 0 auto; }
-
-/* ▼長いコマンドの表示方法：好みに合わせてどれか1つだけ使う */
-
-/* A) 一行キープ＋末尾「…」で省略 */
-.arg-usage__item code{
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-/* B) 折り返して全部見せる（Aと排他） */
-/*
-.arg-usage__item code{
-  white-space:pre-wrap;
-  word-break:break-word;
-}
-*/
-
-/* C) 横スクロールで全部見せる（A/Bと排他） */
-/*
-.arg-usage__item code{
-  white-space:pre;
-  overflow-x:auto;
-}
-*/
