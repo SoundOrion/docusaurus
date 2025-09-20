@@ -6,12 +6,12 @@ type BadgeColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'da
 interface ArgProps {
   name: string;
   badge: string;
-  badgeColor?: BadgeColor;        // デフォルト: 'info'
-  outline?: boolean;              // アウトライン表示
-  param?: React.ReactNode;        // 複数行OK（.arg-preline で改行表示）
-  children?: React.ReactNode;     // 説明（同上）
-  usage?: string | string[];      // 使用例（1つ or 複数）
-  tags?: string[];                // 表示タグ
+  badgeColor?: BadgeColor;
+  outline?: boolean;
+  param?: React.ReactNode;
+  children?: React.ReactNode;
+  usage?: string | string[];   // ← 複数OK
+  tags?: string[];
 }
 
 const normalize = (v: React.ReactNode): React.ReactNode =>
@@ -27,16 +27,15 @@ export default function Arg({
   usage,
   tags = [],
 }: ArgProps) {
-  const [copied, setCopied] = useState<boolean>(false);
+  const usageList = Array.isArray(usage) ? usage : (usage ? [usage] : []);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const copy = async (): Promise<void> => {
-    if (!usage) return;
-    const text = typeof usage === 'string' ? usage : usage[0] ?? '';
+  const copy = async (text: string, idx: number) => {
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1200);
+      setCopiedIndex(idx);
+      setTimeout(() => setCopiedIndex(null), 1200);
     } catch {
       // noop
     }
@@ -48,36 +47,17 @@ export default function Arg({
         <div className="arg-header">
           <h3 className="arg-title">
             <code>{name}</code>
-            <span
-              className={`badge badge--${badgeColor} ${outline ? 'badge--outline' : ''}`}
-            >
+            <span className={`badge badge--${badgeColor} ${outline ? 'badge--outline' : ''}`}>
               {badge}
             </span>
           </h3>
-
-          {usage && (
-            <button
-              className="button button--sm button--secondary arg-copy"
-              onClick={copy}
-              aria-label={copied ? 'Copied' : 'Copy to clipboard'}
-              title={copied ? 'Copied!' : 'Copy'}
-              type="button"
-            >
-              {copied ? (
-                <Check aria-hidden className="arg-icon" />
-              ) : (
-                <Copy aria-hidden className="arg-icon" />
-              )}
-            </button>
-          )}
+          {/* ヘッダーにCopyは出さない（使用例の横に出す） */}
         </div>
 
-        {tags?.length > 0 && (
+        {tags.length > 0 && (
           <div className="arg-tags">
             {tags.map((t, i) => (
-              <span key={i} className="badge badge--secondary badge--outline">
-                {t}
-              </span>
+              <span key={i} className="badge badge--secondary badge--outline">{t}</span>
             ))}
           </div>
         )}
@@ -92,10 +72,29 @@ export default function Arg({
           <div className="arg-preline">{normalize(children)}</div>
         </div>
 
-        {usage && (
+        {usageList.length > 0 && (
           <div className="arg-usage">
             <span>使用例:</span>
-            <code>{typeof usage === 'string' ? usage : usage[0]}</code>
+            <div className="arg-usage__content">
+              {usageList.map((u, i) => {
+                const copied = copiedIndex === i;
+                return (
+                  <div key={i} className="arg-usage__item">
+                    <code>{u}</code>
+                    <button
+                      type="button"
+                      className="button button--sm button--secondary arg-copy"
+                      onClick={() => copy(u, i)}
+                      aria-label={copied ? 'Copied' : 'Copy to clipboard'}
+                      title={copied ? 'Copied!' : 'Copy'}
+                      data-copied={copied}
+                    >
+                      {copied ? <Check aria-hidden className="arg-icon" /> : <Copy aria-hidden className="arg-icon" />}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

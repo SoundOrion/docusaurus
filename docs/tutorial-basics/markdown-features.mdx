@@ -8,6 +8,25 @@ title: コマンドライン引数仕様書
 import Arg from '@site/src/components/Arg';
 
 # コマンドライン引数
+
+<Arg
+  name="--threads"
+  badge="任意"
+  badgeColor="info"
+  usage={[
+    'mytool.exe --threads 4',
+    'mytool.exe --threads 8',
+    'mytool.exe --threads 16'
+  ]}
+  param={`<数値>
+（例: 1, 4, 8, 16）`}
+>
+  並列処理に使用するスレッド数。
+  指定しない場合はCPUコア数に合わせます。
+</Arg>
+
+<details>
+<summary>17.14.14（2025-09-09）</summary>
 <Arg
   name="--threads"
   badge="任意あああああ"
@@ -20,6 +39,7 @@ import Arg from '@site/src/components/Arg';
   指定しない場合は自動でCPUコア数に合わせます。
   例: mytool.exe --threads 4
 </Arg>
+</details>
 
 <Arg
   name="--threads"
