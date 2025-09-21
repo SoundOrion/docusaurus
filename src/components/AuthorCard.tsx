@@ -2,7 +2,8 @@ import React from 'react';
 
 export interface Author {
   name: string;
-  title?: string;       // 所属や役職
+  title?: string;         // 所属や役職
+  description?: string;   // 補足説明
   image_url?: string;
 }
 
@@ -26,6 +27,11 @@ const AuthorCard: React.FC<Props> = ({ a }) => {
       {a.title && (
         <div style={{ color: 'var(--ifm-font-color-base)', opacity: 0.9 }}>
           {a.title}
+        </div>
+      )}
+      {a.description && (
+        <div style={{ fontSize: '0.9rem', marginTop: '0.25rem', opacity: 0.85 }}>
+          {a.description}
         </div>
       )}
     </div>

@@ -3,6 +3,7 @@ yangshun:
   title: Ex-Meta Staff Engineer, Co-founder GreatFrontEnd
   url: https://linkedin.com/in/yangshun
   image_url: https://github.com/yangshun.png
+  description: こんにちは、みなさん、よろしくお願いいたします。
   page: true
   socials:
     x: yangshunz
@@ -29,5 +30,6 @@ anonymous:
   title: Docusaurus Sample
   url: mailto:dummy@example.com
   image_url: /img/avatar.png
+  description: こんにちは、みなさん、よろしくお願いいたします。
   page: true
 
