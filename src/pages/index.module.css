@@ -42,76 +42,75 @@
   transition: transform .15s ease;
 }
 
-/* ========================= */
-/* 共通 背景設定              */
-/* ========================= */
-.heroBgA,
-.heroBgB,
-.heroBgC {
+
+/* ===== パステル/ネオンの色を変数化（最初の配色のまま） ===== */
+:root{
+  --bgA: rgba(144,238,144,0.22);
+  --bgA2: rgba(173,216,230,0.18);
+  --bgB: rgba(255,182,193,0.25);
+  --bgB2: rgba(255,228,196,0.15);
+  --bgC: rgba(221,160,221,0.18);
+
+  --gradA: radial-gradient(60% 60% at 15% 20%, var(--bgA), var(--bgA2), transparent 70%);
+  --gradB: radial-gradient(70% 70% at 85% 30%, var(--bgB), var(--bgB2), transparent 70%);
+  --gradC: radial-gradient(50% 50% at 50% 90%, var(--bgC), transparent 70%);
+}
+[data-theme='dark']{
+  --bgA: rgba(0,255,180,0.32);
+  --bgA2: rgba(0,180,255,0.22);
+  --bgB: rgba(255,0,200,0.28);
+  --bgB2: rgba(255,120,80,0.2);
+  --bgC: rgba(138,43,226,0.25);
+
+  --gradA: radial-gradient(50% 50% at 15% 20%, var(--bgA), var(--bgA2), transparent 70%);
+  --gradB: radial-gradient(60% 60% at 85% 30%, var(--bgB), var(--bgB2), transparent 70%);
+  --gradC: radial-gradient(50% 50% at 50% 90%, var(--bgC), transparent 70%);
+}
+
+/* ===== トップページだけに描画される固定背景レイヤー ===== */
+.homePageBg{
+  position: fixed;
+  inset: -10% -20%;
+  z-index: 0;            /* 最背面（下に敷く） */
+  pointer-events: none;  /* クリックを邪魔しない */
+  background: var(--gradA), var(--gradB), var(--gradC);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+[data-theme='dark'] .homePageBg{
+  background: var(--gradA), var(--gradB), var(--gradC);
+  filter: blur(24px);    /* ネオン感を強調（好みで調整） */
+}
+
+/* ===== 既存ヒーロー背景があれば無効化（重なり防止） ===== */
+.heroBgA,.heroBgB,.heroBgC{ background:none !important; }
+
+/* 背景は main 内だけ（ヘッダー・フッターは透過させない） */
+.homePageBgWrapper {
+  position: relative;
+  z-index: 0;
+  overflow: hidden; /* 背景がはみ出さないように */
+}
+
+.homePageBgWrapper::before {
+  content: '';
   position: absolute;
   inset: -10% -20%;
+  z-index: 0; /* 背景を最背面に */
   pointer-events: none;
-  z-index: 0; /* 常にテキストより背面 */
+
+  background: var(--gradA), var(--gradB), var(--gradC);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-/* ========================= */
-/* ライトモード → パステル   */
-/* ========================= */
-.heroBgA {
-  background: radial-gradient(
-    60% 60% at 15% 20%,
-    rgba(144, 238, 144, 0.22),   /* pastel green (左上) */
-    rgba(173, 216, 230, 0.18),   /* pastel blue hint */
-    transparent 70%
-  );
+[data-theme='dark'] .homePageBgWrapper::before {
+  background: var(--gradA), var(--gradB), var(--gradC);
+  filter: blur(24px);
 }
 
-.heroBgB {
-  background: radial-gradient(
-    70% 70% at 85% 30%,
-    rgba(255, 182, 193, 0.25),   /* pastel pink (右上) */
-    rgba(255, 228, 196, 0.15),   /* peach */
-    transparent 70%
-  );
+/* 中身は背景の上に重ねる */
+.homePageBgWrapper > * {
+  position: relative;
+  z-index: 1;
 }
-
-.heroBgC {
-  background: radial-gradient(
-    50% 50% at 50% 90%,
-    rgba(221, 160, 221, 0.18),   /* pastel purple (下) */
-    transparent 70%
-  );
-}
-
-/* ========================= */
-/* ダークモード → ネオン     */
-/* ========================= */
-[data-theme='dark'] .heroBgA {
-  background: radial-gradient(
-    50% 50% at 15% 20%,
-    rgba(0, 255, 180, 0.32),   /* neon green (左上) */
-    rgba(0, 180, 255, 0.22),   /* neon aqua hint */
-    transparent 70%
-  );
-  filter: blur(22px);
-}
-
-[data-theme='dark'] .heroBgB {
-  background: radial-gradient(
-    60% 60% at 85% 30%,
-    rgba(255, 0, 200, 0.28),   /* neon pink (右上) */
-    rgba(255, 120, 80, 0.2),   /* neon coral hint */
-    transparent 70%
-  );
-  filter: blur(26px);
-}
-
-[data-theme='dark'] .heroBgC {
-  background: radial-gradient(
-    50% 50% at 50% 90%,
-    rgba(138, 43, 226, 0.25),  /* neon purple (下) */
-    transparent 70%
-  );
-  filter: blur(28px);
-}
-

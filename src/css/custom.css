@@ -171,6 +171,7 @@
   border-color: color-mix(in oklab, var(--arg-code-bg) 85%, white 15%);
 }
 
+
 /* ===== パステル/ネオンの色を変数化（最初の配色のまま） ===== */
 :root{
   --bgA: rgba(144,238,144,0.22);
@@ -194,24 +195,6 @@
   --gradB: radial-gradient(60% 60% at 85% 30%, var(--bgB), var(--bgB2), transparent 70%);
   --gradC: radial-gradient(50% 50% at 50% 90%, var(--bgC), transparent 70%);
 }
-
-/* ===== トップページだけに描画される固定背景レイヤー ===== */
-.homePageBg{
-  position: fixed;
-  inset: -10% -20%;
-  z-index: 0;            /* 最背面（下に敷く） */
-  pointer-events: none;  /* クリックを邪魔しない */
-  background: var(--gradA), var(--gradB), var(--gradC);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-[data-theme='dark'] .homePageBg{
-  background: var(--gradA), var(--gradB), var(--gradC);
-  filter: blur(24px);    /* ネオン感を強調（好みで調整） */
-}
-
-/* ===== 既存ヒーロー背景があれば無効化（重なり防止） ===== */
-.heroBgA,.heroBgB,.heroBgC{ background:none !important; }
 
 /* 背景は main 内だけ（ヘッダー・フッターは透過させない） */
 .homePageBgWrapper {

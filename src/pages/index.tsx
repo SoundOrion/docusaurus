@@ -40,9 +40,6 @@ function Hero() {
           </Link>
         </div>
       </div>
-      {/* もうヒーロー内の背景は不要 */}
-      {/* <div aria-hidden className={styles.heroBgA} />
-      <div aria-hidden className={styles.heroBgB} /> */}
     </header>
   );
 }
