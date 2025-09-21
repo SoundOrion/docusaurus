@@ -39,7 +39,7 @@
   --ifm-color-primary-lighter: #26a89b;
   --ifm-color-primary-lightest: #45bcb0;
   --docusaurus-highlighted-code-line-bg: rgba(0,0,0,.3);
-  --arg-code-bg: #282c34; /* 使用例コードの背景（紺トーン） */
+  --arg-code-bg: #282A36; /* 使用例コードの背景（紺トーン） */
 }
 
 /* ========== Layout helpers ========== */
