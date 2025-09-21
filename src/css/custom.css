@@ -161,3 +161,17 @@
 .arg-toggle .arg-icon{ transition: transform .18s ease; }
 .arg-toggle[aria-expanded="false"] .arg-icon{ transform: rotate(-90deg); }
 /* アイコンサイズは既存 .arg-icon で統一（16px） */
+
+/* ===== Flat（影ゼロ） ===== */
+
+/* カードの影＆ホバー影を外す */
+.arg-card.fancy { box-shadow: none; }
+.arg-card.fancy:hover { box-shadow: none; transform: translateY(0); border-color: var(--arg-border-strong); }
+
+/* 使用例コードの影（inset）を外す */
+.arg-codefield__code { box-shadow: none; }
+.arg-codefield:hover .arg-codefield__code { box-shadow: none; border-color: var(--arg-border-strong); }
+
+/* コピーアイコンボタンの影を外す */
+.icon-btn { box-shadow: none; }
+.icon-btn:hover { box-shadow: none; transform: translateY(0) scale(1.02); } /* 内包レイアウトの場合 */
