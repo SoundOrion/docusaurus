@@ -25,8 +25,8 @@
   --arg-border-strong: var(--ifm-color-emphasis-300);
   --arg-muted: var(--ifm-color-emphasis-600);
   --arg-bg-soft: var(--ifm-card-background-color);
-  /* --arg-accent: linear-gradient(90deg,#7c3aed,#22d3ee,#10b981); */ /* top line */
-  --arg-code-bg: #f4f6f8; /* usage code bg (light) */
+  /* --arg-accent: linear-gradient(90deg,#7c3aed,#22d3ee,#10b981); */
+  --arg-code-bg: #f4f6f8;
 }
 
 /* Dark theme */
@@ -39,20 +39,16 @@
   --ifm-color-primary-lighter: #26a89b;
   --ifm-color-primary-lightest: #45bcb0;
   --docusaurus-highlighted-code-line-bg: rgba(0,0,0,.3);
-  --arg-code-bg: var(--ifm-background-surface-color,var(--ifm-background-color));
+  --arg-code-bg: #282c34; /* 使用例コードの背景（紺トーン） */
 }
 
 /* ========== Layout helpers ========== */
 .arg-grid{
   display:grid;
-  gap:.5rem; /* tightened spacing */
+  gap:.5rem;
   grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
 }
-
-/* grid内はカードのマージンを打ち消し */
 .arg-grid .arg-card{ margin-block:0; }
-
-/* 改行をそのまま行送りに */
 .arg-preline{ white-space: pre-line; }
 
 /* ========== Arg Card ========== */
@@ -61,12 +57,17 @@
   position:relative;
   background:var(--arg-bg-soft);
   border:1px solid var(--arg-border);
-  box-shadow:var(--arg-shadow);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  box-shadow:none;                /* フラット */
+  transform:none;
+  transition: border-color .18s ease;
 }
-.arg-card.fancy:hover{ transform: translateY(-0.5px); box-shadow: var(--arg-shadow-hover); }
+.arg-card.fancy:hover{
+  box-shadow:none;                /* ホバーでも変化させない */
+  transform:none;
+  border-color: var(--arg-border);
+}
 
-/* 上辺アクセントライン */
+/* 上辺アクセントライン（変数未定義なら表示されません） */
 .arg-card.fancy::before{
   content:"";
   position:absolute; inset:0 0 auto 0; height:2px;
@@ -76,7 +77,10 @@
 
 .arg-header{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 .arg-title{ display:flex; align-items:center; gap:.6rem; margin:0; }
-.arg-title code{ font-size:.95rem; padding:.1rem .35rem; border-radius:8px; background:var(--ifm-color-emphasis-100); border:1px solid var(--arg-border); }
+.arg-title code{
+  font-size:.95rem; padding:.1rem .35rem; border-radius:8px;
+  background:var(--ifm-color-emphasis-100); border:1px solid var(--arg-border);
+}
 
 /* ラベル行 */
 .arg-row{
@@ -103,21 +107,25 @@
   align-items:center;
   gap:.8rem;
 }
-
-/* コードを“入力欄”風に */
 .arg-codefield__code{
-  display:block;
-  min-width:0;
+  display:block; min-width:0;
   padding:.45rem .7rem;
   border:1px solid var(--arg-border);
   border-radius:10px;
   background: var(--arg-code-bg);
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   font-size:.95em;
+  box-shadow:none;                /* フラット */
 }
-/* 折り返したい場合は上の3行をコメントアウトして下を有効化
+/* 折り返し表示にしたい場合は下を有効化
 .arg-codefield__code{ white-space: pre-wrap; word-break: break-word; overflow: visible; }
 */
+
+/* ホバーしても枠色を変えない（Light/Dark） */
+.arg-codefield:hover .arg-codefield__code { border-color: var(--arg-border); }
+[data-theme='dark'] .arg-codefield:hover .arg-codefield__code {
+  border-color: color-mix(in oklab, var(--arg-code-bg) 85%, white 15%);
+}
 
 /* ========== Icon button (Copy) ========== */
 .icon-btn{
@@ -127,13 +135,12 @@
   border:1px solid var(--arg-border);
   background: var(--ifm-background-surface-color,var(--ifm-background-color));
   color: var(--ifm-color-emphasis-700);
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
-  transition: transform .12s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+  box-shadow:none;                /* フラット */
+  transition: transform .12s ease, background .18s ease, border-color .18s ease, color .18s ease;
 }
-.icon-btn:hover{ transform: translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.10); }
+.icon-btn:hover{ transform: translateY(0) scale(1.02); }
 .icon-btn:active{ transform: translateY(0); }
 .icon-btn .arg-icon{ width:16px; height:16px; }
-
 .icon-btn:focus-visible{ outline:2px solid var(--ifm-color-primary); outline-offset:2px; }
 .icon-btn[data-copied="true"]{
   background: color-mix(in oklab, var(--ifm-color-success) 92%, white 8%);
@@ -147,7 +154,7 @@
   .arg-codefield{ gap:.6rem; }
 }
 
-/* 開閉アニメ（auto高さの代替：grid-rowsトリック） */
+/* ========== Collapsible ========== */
 .arg-collapsible{
   display:grid;
   grid-template-rows: 1fr;
@@ -155,49 +162,11 @@
 }
 .arg-collapsible[data-open="false"]{ grid-template-rows: 0fr; }
 .arg-collapsible > .arg-content{ overflow:hidden; }
-.arg-collapsible[data-open="false"] > .arg-content{ opacity:.0; }
-
-/* トグルの矢印回転 */
+.arg-collapsible[data-open="false"] > .arg-content{ opacity:0; }
 .arg-toggle .arg-icon{ transition: transform .18s ease; }
 .arg-toggle[aria-expanded="false"] .arg-icon{ transform: rotate(-90deg); }
-/* アイコンサイズは既存 .arg-icon で統一（16px） */
 
-/* ===== Flat（影ゼロ） ===== */
-
-/* カードの影＆ホバー影を外す */
-.arg-card.fancy { box-shadow: none; }
-.arg-card.fancy:hover { box-shadow: none; transform: translateY(0); border-color: var(--arg-border-strong); }
-
-/* 使用例コードの影（inset）を外す */
-.arg-codefield__code { box-shadow: none; }
-.arg-codefield:hover .arg-codefield__code { box-shadow: none; border-color: var(--arg-border-strong); }
-
-/* コピーアイコンボタンの影を外す */
-.icon-btn { box-shadow: none; }
-.icon-btn:hover { box-shadow: none; transform: translateY(0) scale(1.02); } /* 内包レイアウトの場合 */
-
-/* Dark: 使用例コードの背景をこの色に固定 */
-[data-theme='dark']{
-  --arg-code-bg: #282c34;  /* ← この色に置き換え */
-}
-
-/* 境界線も馴染ませる（任意） */
+/* ========== Dark-specific fine tune ========== */
 [data-theme='dark'] .arg-codefield__code{
   border-color: color-mix(in oklab, var(--arg-code-bg) 85%, white 15%);
 }
-
-/* 使用例フィールド：ホバーしても枠色を変えない */
-.arg-codefield:hover .arg-codefield__code {
-  border-color: var(--arg-border); /* Light の既定と同じ */
-}
-
-/* Dark でも固定（あなたの既定と同じ色に合わせる） */
-[data-theme='dark'] .arg-codefield:hover .arg-codefield__code {
-  border-color: color-mix(in oklab, var(--arg-code-bg) 85%, white 15%);
-}
-
-/* （必要なら）カード自体の枠色もホバー時に固定 */
-.arg-card.fancy:hover {
-  border-color: var(--arg-border);
-}
-
