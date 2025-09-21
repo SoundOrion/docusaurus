@@ -78,7 +78,7 @@
 .arg-header{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 .arg-title{ display:flex; align-items:center; gap:.6rem; margin:0; }
 .arg-title code{
-  font-size:.95rem; padding:.1rem .35rem; border-radius:8px;
+  font-size:1.05rem; padding:.1rem .35rem; border-radius:8px;
   background:var(--ifm-color-emphasis-100); border:1px solid var(--arg-border);
 }
 
