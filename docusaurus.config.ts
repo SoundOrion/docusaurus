@@ -112,6 +112,24 @@ const config: Config = {
     ],
     // === 画像ズーム ===
     ['docusaurus-plugin-image-zoom', { selector: '.markdown img' }],
+     // 👇 追加するカスタムプラグイン
+    function yamlLoaderPlugin() {
+      return {
+        name: 'yaml-loader-plugin',
+        configureWebpack() {
+          return {
+            module: {
+              rules: [
+                {
+                  test: /\.ya?ml$/,
+                  use: 'yaml-loader',
+                },
+              ],
+            },
+          };
+        },
+      };
+    },
   ],
 
   themeConfig: {
