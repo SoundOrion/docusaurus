@@ -175,3 +175,29 @@
 /* コピーアイコンボタンの影を外す */
 .icon-btn { box-shadow: none; }
 .icon-btn:hover { box-shadow: none; transform: translateY(0) scale(1.02); } /* 内包レイアウトの場合 */
+
+/* Dark: 使用例コードの背景をこの色に固定 */
+[data-theme='dark']{
+  --arg-code-bg: #282c34;  /* ← この色に置き換え */
+}
+
+/* 境界線も馴染ませる（任意） */
+[data-theme='dark'] .arg-codefield__code{
+  border-color: color-mix(in oklab, var(--arg-code-bg) 85%, white 15%);
+}
+
+/* 使用例フィールド：ホバーしても枠色を変えない */
+.arg-codefield:hover .arg-codefield__code {
+  border-color: var(--arg-border); /* Light の既定と同じ */
+}
+
+/* Dark でも固定（あなたの既定と同じ色に合わせる） */
+[data-theme='dark'] .arg-codefield:hover .arg-codefield__code {
+  border-color: color-mix(in oklab, var(--arg-code-bg) 85%, white 15%);
+}
+
+/* （必要なら）カード自体の枠色もホバー時に固定 */
+.arg-card.fancy:hover {
+  border-color: var(--arg-border);
+}
+
