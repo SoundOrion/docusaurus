@@ -2,15 +2,16 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
-import { BookOpen, Newspaper } from 'lucide-react'; // ← 追加
+import { BookOpen, Newspaper } from 'lucide-react';
 import styles from './index.module.css';
 
 export default function Home() {
   return (
     <Layout
       title="Docs Portal"
-      description="社内システムのサポートサイト。ドキュメントとリリースノートをまとめて確認できます。">
-      <Hero />
+      description="社内システムのサポートサイト。ドキュメントとリリースノートをまとめて確認できます。"
+      wrapperClassName="homePageBgWrapper" >
+        <Hero />    
     </Layout>
   );
 }
@@ -39,9 +40,9 @@ function Hero() {
           </Link>
         </div>
       </div>
-      {/* 背景のグラデーション */}
-      <div aria-hidden className={styles.heroBgA} />
-      <div aria-hidden className={styles.heroBgB} />
+      {/* もうヒーロー内の背景は不要 */}
+      {/* <div aria-hidden className={styles.heroBgA} />
+      <div aria-hidden className={styles.heroBgB} /> */}
     </header>
   );
 }
