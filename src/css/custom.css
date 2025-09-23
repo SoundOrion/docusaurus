@@ -238,3 +238,17 @@
   max-width: 100%;
   overflow-x: auto;
 }
+
+/* モバイルでの横スクロールをスムーズに */
+.arg-preline pre{
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  margin: .5rem 0;           /* カード内で詰めすぎない */
+  border-radius: 8px;        /* 周囲の角丸と揃える（任意） */
+}
+
+/* 長い inline code だけは自然に折り返す（任意） */
+.arg-preline p code{
+  white-space: break-spaces;
+  word-break: break-word;
+}
