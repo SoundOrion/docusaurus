@@ -225,3 +225,16 @@
   position: relative;
   z-index: 1;
 }
+
+/* 開いている時は overflow を可視化（閉じている時だけ隠す） */
+.arg-collapsible > .arg-content { overflow: visible; }
+.arg-collapsible[data-open="false"] > .arg-content { overflow: hidden; }
+
+/* Grid 2列目（説明カラム）は縮められるようにしてはみ出しを防止 */
+.arg-row > :nth-child(2) { min-width: 0; }
+
+/* 説明内のコードブロックは横スクロール可＆親幅に収める */
+.arg-preline pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
