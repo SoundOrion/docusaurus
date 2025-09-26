@@ -252,3 +252,70 @@
   white-space: break-spaces;
   word-break: break-word;
 }
+
+/* ---- Print-only tuning for Docusaurus ---- */
+@media print {
+  /* ===== レイアウト調整 ===== */
+  /* サイドバー / TOC / ナビゲーションを非表示 */
+  .theme-doc-sidebar-container,
+  .theme-doc-toc-desktop,
+  .theme-doc-toc-mobile,
+  .table-of-contents,
+  .navbar,
+  .theme-doc-breadcrumbs,
+  .footer {
+    display: none !important;
+  }
+
+  /* 本文を横幅いっぱいに */
+  .container,
+  .main-wrapper,
+  .row,
+  .col,
+  .theme-doc-markdown,
+  .theme-doc-markdown.markdown {
+    max-width: none !important;
+    width: 100% !important;
+    flex: 1 1 auto !important;
+  }
+
+  /* sticky/overflowが印刷で崩すのを防ぐ */
+  [style*="position: sticky"],
+  .theme-doc-sidebar-container,
+  .theme-doc-toc-desktop {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  /* 改ページ制御 */
+  h1, h2, h3 { break-after: avoid; }
+  table, pre, blockquote { break-inside: avoid; }
+
+  /* ===== ライトモード強制 ===== */
+  html[data-theme="dark"] {
+    color-scheme: light;
+  }
+  html[data-theme="dark"],
+  html[data-theme="dark"] body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  html[data-theme="dark"] .navbar,
+  html[data-theme="dark"] .footer,
+  html[data-theme="dark"] .menu,
+  html[data-theme="dark"] pre,
+  html[data-theme="dark"] code {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* ===== 用紙設定 ===== */
+  @page { size: A4; margin: 12mm; }
+
+  /* フォント：社内ネットワークでも安心な安全フォント */
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+                 "Noto Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic",
+                 sans-serif;
+  }
+}
