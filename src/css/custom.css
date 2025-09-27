@@ -293,3 +293,86 @@
 /* コードブロックはみ出し対策（普段用のまま印刷でも効く） */
 .arg-row > :nth-child(2) { min-width: 0; }
 .arg-preline pre { max-width: 100%; overflow-x: auto; }
+
+/* ==================== PRINT ONLY ==================== */
+@media print {
+
+  /* 用紙・余白（好みで調整） */
+  @page { size: A4; margin: 14mm 14mm; }
+
+  /* 画面用UIは印刷対象外 */
+  .navbar,
+  .DocSearch-Button,
+  .theme-doc-sidebar-container,
+  .theme-doc-toc-desktop, .theme-doc-toc-mobile,
+  .breadcrumbs, .table-of-contents,
+  .pagination-nav, .theme-doc-footer, .footer,
+  .theme-back-to-top-button,
+  .announcementBar {
+    display: none !important;
+  }
+
+  /* コンテンツを紙幅いっぱいに */
+  .container, .main-wrapper, .theme-doc-markdown {
+    max-width: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ========= 1) ダーク閲覧中でもライトで出力 ========= */
+  html, body { background: #fff !important; color: #111 !important; }
+  /* コード系もライト配色に寄せる（ダーク閲覧時のままにならないように） */
+  pre, code, .theme-code-block, .prism-code {
+    background: #f6f8fa !important;
+    color: #24292f !important;
+    border: 1px solid #eaeef2 !important;
+    -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+  }
+
+  /* ========= 2) details/Arg を強制展開 ========= */
+  /* details が閉じていても中身を出す（UAスタイルを上書き） */
+  details:not([open]) > * { display: block !important; }
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  /* Arg 折りたたみは常に開いた状態で印刷 */
+  .arg-collapsible { grid-template-rows: 1fr !important; }
+  .arg-collapsible > .arg-content { overflow: visible !important; opacity: 1 !important; }
+  .arg-toggle, .icon-btn { display: none !important; } /* 余計なボタン非表示 */
+
+  /* ========= 3) 途中改ページの乱れを防ぐ ========= */
+  .arg-card, .theme-doc-markdown h2, .theme-doc-markdown h3 {
+    break-inside: avoid; page-break-inside: avoid;
+  }
+}
+/* 印刷時でも説明中のコードブロックは見切れないように（横スクロール可） */
+.arg-row > :nth-child(2) { min-width: 0; }
+.arg-preline pre { max-width: 100%; overflow-x: auto; }
+
+@media print {
+  /* details が閉じていても中身を表示（summary 以外を全部出す） */
+  details:not([open]) > *:not(summary) {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+
+  /* Docusaurus の Details コンポーネント用クラスも念のためカバー */
+  details:not([open]) .details__content,
+  details:not([open]) .theme-details__content {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+
+  /* マーカー非表示（印刷をスッキリさせる） */
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  /* カードやセクション途中で改ページしない */
+  details, .arg-card { break-inside: avoid; page-break-inside: avoid; }
+}

@@ -2,6 +2,10 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import {getAnnouncementBar} from './scripts/releasesMeta';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
 // ===== GitHub リポジトリ情報 =====
 const ORG_NAME = 'SoundOrion';
@@ -47,6 +51,8 @@ const config: Config = {
   // URL 末尾スラッシュ統一
   trailingSlash: false,
 
+  clientModules: [require.resolve('./src/printHooks.ts')],
+
   presets: [
     [
       'classic',
@@ -60,8 +66,8 @@ const config: Config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           // 数式（KaTeX）
-          remarkPlugins: [require('remark-math')],
-          rehypePlugins: [require('rehype-katex')],
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
         },
         // === Blog（リリースノート） ===
         blog: {
@@ -82,8 +88,8 @@ const config: Config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           // 数式（KaTeX）
-          remarkPlugins: [require('remark-math')],
-          rehypePlugins: [require('rehype-katex')],
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
         },
         theme: {
           customCss: './src/css/custom.css', // ← KaTeX CSS を custom.css で読み込み（後述）
@@ -131,7 +137,7 @@ const config: Config = {
       };
     },
   ],
-
+  
   themeConfig: {
     // OGP（Open Graph Protocol）画像
     // サイズ: 1200 × 630 px（16:9 近く）
