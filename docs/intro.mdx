@@ -276,3 +276,14 @@ FROM users
 WHERE status = 'active'
 ORDER BY created_at DESC;
 ```
+
+```mermaid
+---
+config:
+  layout: elk
+---
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```

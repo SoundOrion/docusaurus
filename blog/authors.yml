@@ -32,4 +32,6 @@ anonymous:
   image_url: /img/avatar.png
   description: こんにちは、みなさん、よろしくお願いいたします。
   page: true
+  socials:
+    email: dummy@example.com
 
