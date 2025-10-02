@@ -37,7 +37,6 @@ const config: Config = {
   projectName: PROJECT_NAME,
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   i18n: {
     defaultLocale: 'ja',
@@ -99,7 +98,12 @@ const config: Config = {
   ],
 
   themes: ['@docusaurus/theme-mermaid'],
-  markdown: { mermaid: true },
+  markdown: { 
+    mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   plugins: [
     // === ローカル検索 ===
