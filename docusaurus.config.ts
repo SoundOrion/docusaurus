@@ -4,6 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 import {getAnnouncementBar} from './scripts/releasesMeta';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkGfm from 'remark-gfm';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
@@ -65,7 +66,7 @@ const config: Config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           // 数式（KaTeX）
-          remarkPlugins: [remarkMath],
+          remarkPlugins: [remarkGfm, remarkMath],
           rehypePlugins: [rehypeKatex],
         },
         // === Blog（リリースノート） ===
@@ -87,7 +88,7 @@ const config: Config = {
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           // 数式（KaTeX）
-          remarkPlugins: [remarkMath],
+          remarkPlugins: [remarkGfm, remarkMath],
           rehypePlugins: [rehypeKatex],
         },
         theme: {

@@ -36,6 +36,7 @@
     "@docusaurus/types": "^3.9.1",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
+    "remark-gfm": "^4.0.1",
     "typescript": "~5.6.2",
     "yaml-loader": "^0.8.1"
   },
